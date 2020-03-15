@@ -7,12 +7,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
+/*@Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode*/
 public class Employee {
 
 	private String empId;

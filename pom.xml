@@ -49,6 +49,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>employee-producer-docker</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
