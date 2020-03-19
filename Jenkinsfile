@@ -1,24 +1,15 @@
-node {
-    def app
+pipeline {
 
-    stage('Clone repository') {
-        /* Cloning the Repository to our Workspace */
+    agent any
 
-        checkout scm
-    }
+    stages {
 
-    stage('Build image') {
-        /* This builds the actual image */
-
-        app = docker.build("dockerrock123/producerapp")
-    }
-
-    stage('Test image') {
-        
-        app.inside {
-            echo "Tests passed"
+        stage ('Build') {
+            steps {
+                withMaven(maven: 'maven_3_5_0') {
+                    sh 'mvn clean package'
+                }
+            }
         }
     }
-
-    
 }
