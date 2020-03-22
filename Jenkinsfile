@@ -3,7 +3,4 @@ node {
     echo 'Hello World'
   }
 
-  stage('git clone') {
-    git clone "https://github.com/surjeetkm/producer.git"
-  }
 }
