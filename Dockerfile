@@ -1,3 +1,4 @@
+
 FROM openjdk:8
 ADD target/employee-producer-docker.jar employee-producer-docker.jar
 EXPOSE 7777

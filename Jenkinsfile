@@ -1,15 +1,12 @@
-pipeline {
+node {
 
-    agent any
+    checkout scm
 
-    stages {
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
-        stage ('Build') {
-            steps {
-                withMaven(maven: 'maven_3_5_0') {
-                    sh 'mvn clean package'
-                }
-            }
-        }
+        def customImage = docker.build("dockerrock123/dockerrock123")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
     }
 }
