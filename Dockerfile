@@ -1,6 +1,5 @@
 
 FROM openjdk:8
-RUN mkdir -p /test/code/
-ADD employee-producer-docker.jar /test/code/
+ADD target/employee-producer-docker.jar employee-producer-docker.jar
 EXPOSE 7777
 ENTRYPOINT ["java","-jar","employee-producer-docker.jar"]
