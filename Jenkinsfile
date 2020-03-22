@@ -1,12 +1,14 @@
-node {
-
-    checkout scm
-
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
-
-        def customImage = docker.build("dockerrock123/dockerrock123")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
+pipeline {  
+	environment {
+    registry = "dockerrock123/skmrepo"
+    registryCredential = 'dockerHub'
+  }  agent any  stages {
+    stage('Building image') {
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
     }
+  }
 }
