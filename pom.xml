@@ -49,7 +49,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>employee-producer-docker</finalName>
+		<finalName>employee-producer-kubernate</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

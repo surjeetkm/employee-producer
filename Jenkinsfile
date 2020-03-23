@@ -9,4 +9,7 @@ node{
         def mavenCmd= "${mavenHome}/bin/mvn "
         sh "${mavenCmd} clean package"
     }
+    stage('Docker build Image'){
+    	sh "docker build -t dockerrock123/employee-producer-kubernate ."
+    }
 }
