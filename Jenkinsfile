@@ -1,21 +1,12 @@
 node{
-	def app
-	stage('Clone repository'){
-		checkout scm
-	}
-	stage('Build Image'){
-		app=docker.build("dockerrock123/producerapp")
-	}
-	stage('Test Image'){
-		app.inside{
-			sh 'echo "Test Passed"'
-		}
-	}
-	stage('Push Image'){
-		docker.withRegistry('https://registry.hub.docker.com','dockerHub'){
-			app.push("${env.BUILD_NUMBER}")
-			app.push("latest")
-		}
-	}
-
+    
+    stage("Git Clone"){
+        git credentialsId: 'github', url: 'https://github.com/surjeetkm/producer.git'
+    }
+    stage("Maven Clean Build"){
+        def mavenHome = tool name: "Maven", type: "maven"
+        
+        def mavenCmd= "${mavenHome}/bin/mvn "
+        sh "${mavenCmd} clean package"
+    }
 }
