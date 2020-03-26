@@ -1,7 +1,9 @@
 node{
     
     stage("Git Clone"){
+        echo "Git CLone started......"
         git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/surjeetkm/producer.git'
+        echo "Git cloned ended.........."
     }
     stage("Maven Clean Build"){
         echo "Maven build started......"
