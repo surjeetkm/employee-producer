@@ -5,7 +5,7 @@ node{
     }
     stage("Maven Clean Build"){
         def MVN_COMMAND = "mvn clean package"
-        sh "${MVN_COMMAND}
+        sh "${MVN_COMMAND}"
     }
     stage('Docker build Image'){
     	sh "docker build -t dockerrock123/employee-producer-kubernate ."
