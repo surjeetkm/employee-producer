@@ -16,6 +16,7 @@ node{
     withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
 		sh "docker login -u dockerrock123 -p ${DOCKER_HUB_CREDENTIALS}"
 	}
+	    
     	sh "docker push dockerrock123/employee-producer-kubernate"
     }
 }
