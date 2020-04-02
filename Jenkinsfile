@@ -9,14 +9,13 @@ node{
         def mavenCmd= "${mavenHome}/bin/mvn"
         sh "${mavenCmd}  clean package"
     }
-    stage('Docker build Image'){
-    	sh "docker build -t dockerrock123/employee-producer-kubernate ."
-    }
-    stage('Docker push to docker hub'){
-    withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-		sh "docker login -u dockerrock123 -p ${DOCKER_HUB_CREDENTIALS}"
+    stage('Build image') {
+ 	 app = docker.build("banded-elevator-272716/student-service-latest")
 	}
-	    
-    	sh "docker push dockerrock123/employee-producer-kubernate"
-    }
+	stage('Push image') {
+ 	 docker.withRegistry('https://eu.gcr.io', 'gcr:myregistry') {
+ 	 app.push("${env.BUILD_NUMBER}")
+ 	 app.push("latest")
+  }
+}
 }
